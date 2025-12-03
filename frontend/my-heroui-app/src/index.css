@@ -1,0 +1,620 @@
+html, body {
+  overflow-x: hidden;
+}
+
+html,body{
+margin: 0px;
+padding: 0px;
+height: 100%;
+width: 100%;
+}
+.navbar{
+    background-color: rgb(196, 185, 157);
+    color: #ffffff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: center;
+    height: 14vh;
+}
+ .navIcons{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+}
+.fornavIcons{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+} 
+.logo{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-left: 4vw;
+}
+.navContent{
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+    width: 50vw;
+}
+.topMostdiv{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 7vh;
+    align-items: center;
+}
+.belowNav{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 4px 180px;
+    background-color: #ffffff;
+}
+.belowNavbutton{
+    background-color:rgb(247, 247, 247);
+    border-radius: .2rem;
+   padding: 5px;
+   width: fit-content;
+   margin: 2px;
+}
+.specialbtn{
+     background-color: rgb(196, 185, 157);
+      color: #ffffff;
+}
+.mainPagepic{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-around;
+    
+    align-items: center;
+    height: 100vh;
+    /* width:100vw; */
+    background-image: url(mainPagepic.jfif);
+    /* background-image: url(Bilal.jpeg);
+    background-position:center; */
+   background-repeat: no-repeat;
+   background-size: 100vw;
+   color: #ffffff;
+   
+}
+.aboveMainpic{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1vw;
+    background-color: rgb(247, 247, 247);
+}
+.HomePageCoverdiv{
+    height: 100vh;
+}
+.secondPage{
+    height: 100vh;
+}
+.mainPagepic Button{
+    padding: 2vw;
+    background-color: white;
+    color: black;
+    width: 13vw;
+}
+.CardsDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: rgb(247, 246, 245);
+    padding: 3vw;
+}
+
+.card1{
+    background-image: url(shirts.jfif);
+    height: 40vh;
+    width: 20vw;
+    /* background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat; */
+}
+.card2{
+    background-image: url(bottoms.jfif);
+    height: 40vh;
+    width: 20vw;
+}
+.card3{
+     background-image: url(shoes.jpg);
+    height: 40vh;
+    width: 20vw;
+    background-position: center; 
+}
+.card4{
+     background-image: url(watches.jfif);
+    height: 40vh;
+    width: 20vw;
+}
+.allcard{
+     overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.allcard:hover{
+ transform: scale(1.08); /* zoom slightly */
+}/*
+.thirdPage{
+    height: 100vh;
+   
+}
+.carVideoCard{
+    height: 80vh;
+    width: 50vw;
+}
+video{
+      height: 80vh;
+    width: 50vw;
+}
+.thirddivCard{
+    display: flex;
+    flex-direction: row;
+
+}
+.thirddivCard div h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.secondPartof3drdDiv{
+
+    background-color: rgb(196, 185, 157);
+      height: 80vh;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.secondPartof3drdDiv h1{
+    font-size: x-large;
+    color: white;
+}
+.secondPartof3drdDiv p{
+    color:white;
+    margin-top:6vw;
+    margin-left: 3vw;
+}
+.secondPartof3drdDiv button{
+    background-color: white;
+    color: black;
+    width: 23vw;
+    height: 7vh;
+    margin-left: 4vw;
+    margin-top: 2vw;
+} */
+ .thirdPage {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.thirddivCard {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+
+.thirddivCard > div {
+  width: 50%;
+  height: 100%;
+}
+
+/* Video section */
+.thirddivCard video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* ensures it fills the div without distortion */
+  display: block;
+}
+
+/* Right-side content */
+.secondPartof3drdDiv {
+  background-color: rgb(196, 185, 157);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4vw;
+}
+.secondPartof3drdDiv h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.secondPartof3drdDiv p {
+  line-height: 1.5;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+.secondPartof3drdDiv button {
+  background-color: white;
+  color: black;
+  width: 29vw;
+  padding: 1rem 2rem;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+.ForthPage{
+    height: 100vh;
+}   
+.ForthPage h1 b{
+    display: flex;
+    justify-content: center;
+    margin-top: 10vh;
+}
+.forthPageBothDiv{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+   justify-content: space-evenly;
+   margin-top: 5vh;
+}
+.ForthPage div .card1{
+    background-image: url(jacket1.webp);
+    height: 80vh;
+    width: 40vw;
+    border-radius: 1rem;
+    background-position: center;
+     display: flex;
+        flex-wrap: wrap;
+        align-content: flex-end;
+        color: white;
+}
+.ForthPage div .card2{
+     background-image: url(jacket2.webp);
+      height: 80vh;
+        width: 40vw;
+        border-radius: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: flex-end;
+        color: white;
+}
+.forthPageShopNowbtn{
+    color: black;
+    background-color: white;
+    margin: 3vw;
+    width: 11vw;
+    border-radius: .5rem;
+}
+.fifthPage{
+    height: 70vh;
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-between;
+}
+.policyDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border: 2px solid gray;
+    border-radius: .5rem;
+    width: 90vw;
+    margin-left: 5vw;
+    padding-top: 3vh;
+    margin-top: 1vh;
+    height: 30vh;
+}
+.truck{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+   
+    height: 25vh;
+    width: 20vw;
+}
+
+.returnDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+     width: 20vw;
+    flex-wrap: wrap;
+   
+}
+.CustomerSupport{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+     width: 20vw;
+    align-items: center;
+  
+}
+.SecurePayments{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    
+     width: 20vw;
+}
+.footer{
+    height: 100vh;
+    background-color: rgb(196, 185, 157);
+    color: white;
+    display: flex;
+}
+.fooerUpperdiv{
+    padding-top: 5vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-left: 10vw;
+
+}
+.footerLogo{
+    width: 20vw;
+}
+.footerPolicies{
+    width: 20vw;
+}
+.footerSupport{
+    width: 20vw;
+}
+.ContactInformation{
+    width: 20vw;
+}
+.aboutPage{
+    height: 100vh;
+  display: flex;
+  flex-direction: column;
+ 
+}
+
+.firstAboutVideoDiv{
+    display: flex;
+    flex-direction: row;
+    height: 60vh;
+    width: 100vw;
+}
+.firstVideo{
+    height: 60vh;
+    width: 50vw;
+    overflow: hidden;
+    
+}
+.AboutPage1stDivheading{
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.AboutPage2ndPart{
+    display: flex;
+    flex-direction: row;
+    height: 40vh;
+    width: 100vw;
+}
+.AboutPage2ndPart1{
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    justify-content: space-between;
+}
+.AboutPage2ndPart1Heading{
+    display: flex;
+    width: 50vw;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+}
+.AboutPage2ndPart2{
+    background-image: url(brand.jfif);
+    width:50vw;
+    background-repeat: inherit;
+}
+.firstAboutVideoDiv2ndPart{
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    justify-content: space-evenly;
+}
+.AllProductsUpperdiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100vw;
+}
+.AllCard{
+    background-color: rgb(196, 185, 157);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35vh;
+    width: 20vw;
+    color: white;
+}
+.AllProductsUpperdivCard{
+    display: flex;
+    flex-wrap: wrap;
+    height: 35vh;
+    width: 15vw;
+   margin-bottom: 10vh;
+}
+
+
+
+
+
+
+.Allproductcard1{
+    background-image: url(shirts.jfif);
+    height: 35vh;
+    width: 15vw;
+}
+.Allproductcard2{
+    background-image: url(bottoms.jfif);
+    height: 35vh;
+    width: 15vw;
+}
+.Allproductcard3{
+     background-image: url(shoes.jpg);
+    height: 35vh;
+    width: 15vw;
+    background-position: center; 
+}
+.Allproductcard4{
+     background-image: url(watches.jfif);
+    height: 35vh;
+    width: 15vw;
+}
+.Allproductallcard{
+     overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.allcard:hover{
+ transform: scale(1.08); /* zoom slightly */
+}
+.loginDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    height: 100vh;
+    width: 100vw;
+   background-color: gray;
+    flex-wrap: wrap;
+
+}
+.loginInput{
+    width: 30vw;
+}
+.loginCenterDiv{
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    justify-content: space-evenly;
+    border: 1px solid white;
+    border-radius: 1rem;
+    padding: 2%;
+}
+.SignupDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    height: 100vh;
+    width: 100vw;
+   background-color: gray;
+    flex-wrap: wrap;
+}
+.SignupCenterDiv{
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    justify-content: space-evenly;
+    border: 1px solid white;
+    border-radius: 1rem;
+    padding: 2%;
+}
+.haveAnAccountSpan{
+    text-decoration-line: underline;
+}
+.haveAnAccountSpan:hover{
+    text-decoration-line: underline;
+    color: blue;
+}
+.adminPanelDiv{
+    height: 100vh;
+    width: 100vw;
+     background-color: rgb(196, 185, 157);
+     display: flex;
+     flex-direction: column;
+    
+     justify-content: space-evenly;
+     
+}
+.adminPanelDiv h1{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.newAdminDiv{
+height: 20vh;
+width: 30vh;
+display: flex;
+flex-direction: column;
+justify-content: space-evenly;
+align-items: center;
+border: 2px solid black;
+border-radius: 1rem;
+}
+.AdminAllfuncDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.updateAdminDiv{
+height: 20vh;
+width: 30vh;
+display: flex;
+flex-direction: column;
+justify-content: space-evenly;
+align-items: center;
+border: 2px solid black;
+border-radius: 1rem;
+}
+.newProductPage{
+    height: 100vh;
+    width: 100vw;
+    background-color:  rgb(196, 185, 157);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.newProductPageDiv{
+    height: 70vh;
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.newProductCategorybtn{
+    background-color: white;
+}
+.AllproductslowerDiv{
+    height: 200vh;
+    
+}
+.AllproductslowerDivInnerDiv{
+    height: 30vh;
+    width: 20vw;
+}
+.AllproductslowerDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-bottom: 13vh;
+    gap: 10vh;
+    
+}
+.AllproductslowerDivTops{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 30vh;
+    /* width: 20vw; */
+}
+.AllproductslowerDivBottoms{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 30vh;
+    /* width: 20vw; */
+}
+.deleteProductPage{
+    height: 100vh;
+    background-color:  rgb(196, 185, 157);
+}
