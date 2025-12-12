@@ -1,14 +1,17 @@
-html, body {
-  overflow-x: hidden;
+html,
+body {
+    overflow-x: hidden;
 }
 
-html,body{
-margin: 0px;
-padding: 0px;
-height: 100%;
-width: 100%;
+html,
+body {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    width: 100%;
 }
-.navbar{
+
+.navbar {
     background-color: rgb(196, 185, 157);
     color: #ffffff;
     display: flex;
@@ -17,92 +20,106 @@ width: 100%;
     align-content: center;
     height: 14vh;
 }
- .navIcons{
+
+.navIcons {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
     align-items: center;
 }
-.fornavIcons{
+
+.fornavIcons {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    
-} 
-.logo{
+
+}
+
+.logo {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     margin-left: 4vw;
 }
-.navContent{
+
+.navContent {
     display: flex;
     list-style: none;
     justify-content: space-between;
     width: 50vw;
 }
-.topMostdiv{
+
+.topMostdiv {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     height: 7vh;
     align-items: center;
 }
-.belowNav{
+
+.belowNav {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     margin: 4px 180px;
     background-color: #ffffff;
 }
-.belowNavbutton{
-    background-color:rgb(247, 247, 247);
+
+.belowNavbutton {
+    background-color: rgb(247, 247, 247);
     border-radius: .2rem;
-   padding: 5px;
-   width: fit-content;
-   margin: 2px;
+    padding: 5px;
+    width: fit-content;
+    margin: 2px;
 }
-.specialbtn{
-     background-color: rgb(196, 185, 157);
-      color: #ffffff;
+
+.specialbtn {
+    background-color: rgb(196, 185, 157);
+    color: #ffffff;
 }
-.mainPagepic{
+
+.mainPagepic {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: space-around;
-    
+
     align-items: center;
     height: 100vh;
     /* width:100vw; */
     background-image: url(mainPagepic.jfif);
     /* background-image: url(Bilal.jpeg);
     background-position:center; */
-   background-repeat: no-repeat;
-   background-size: 100vw;
-   color: #ffffff;
-   
+    background-repeat: no-repeat;
+    background-size: 100vw;
+    color: #ffffff;
+
 }
-.aboveMainpic{
+
+.aboveMainpic {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     padding: 1vw;
     background-color: rgb(247, 247, 247);
 }
-.HomePageCoverdiv{
+
+.HomePageCoverdiv {
     height: 100vh;
 }
-.secondPage{
+
+.secondPage {
     height: 100vh;
 }
-.mainPagepic Button{
+
+.mainPagepic Button {
     padding: 2vw;
     background-color: white;
     color: black;
     width: 13vw;
 }
-.CardsDiv{
+
+.CardsDiv {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -110,7 +127,7 @@ width: 100%;
     padding: 3vw;
 }
 
-.card1{
+.card1 {
     background-image: url(shirts.jfif);
     height: 40vh;
     width: 20vw;
@@ -118,29 +135,37 @@ width: 100%;
     background-size: contain;
     background-repeat: no-repeat; */
 }
-.card2{
+
+.card2 {
     background-image: url(bottoms.jfif);
     height: 40vh;
     width: 20vw;
 }
-.card3{
-     background-image: url(shoes.jpg);
+
+.card3 {
+    background-image: url(shoes.jpg);
     height: 40vh;
     width: 20vw;
-    background-position: center; 
+    background-position: center;
 }
-.card4{
-     background-image: url(watches.jfif);
+
+.card4 {
+    background-image: url(watches.jfif);
     height: 40vh;
     width: 20vw;
 }
-.allcard{
-     overflow: hidden;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+
+.allcard {
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
-.allcard:hover{
- transform: scale(1.08); /* zoom slightly */
-}/*
+
+.allcard:hover {
+    transform: scale(1.08);
+    /* zoom slightly */
+}
+
+/*
 .thirdPage{
     height: 100vh;
    
@@ -190,110 +215,122 @@ video{
     margin-left: 4vw;
     margin-top: 2vw;
 } */
- .thirdPage {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.thirdPage {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .thirddivCard {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 100%;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
 }
 
-.thirddivCard > div {
-  width: 50%;
-  height: 100%;
+.thirddivCard>div {
+    width: 50%;
+    height: 100%;
 }
 
 /* Video section */
 .thirddivCard video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* ensures it fills the div without distortion */
-  display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* ensures it fills the div without distortion */
+    display: block;
 }
 
 /* Right-side content */
 .secondPartof3drdDiv {
-  background-color: rgb(196, 185, 157);
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 4vw;
+    background-color: rgb(196, 185, 157);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4vw;
 }
+
 .secondPartof3drdDiv h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+    font-size: 2rem;
+    margin-bottom: 1rem;
 }
+
 .secondPartof3drdDiv p {
-  line-height: 1.5;
-  font-size: 1rem;
-  margin-bottom: 2rem;
+    line-height: 1.5;
+    font-size: 1rem;
+    margin-bottom: 2rem;
 }
+
 .secondPartof3drdDiv button {
-  background-color: white;
-  color: black;
-  width: 29vw;
-  padding: 1rem 2rem;
-  border: none;
-  font-weight: 600;
-  cursor: pointer;
+    background-color: white;
+    color: black;
+    width: 29vw;
+    padding: 1rem 2rem;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
 }
-.ForthPage{
+
+.ForthPage {
     height: 100vh;
-}   
-.ForthPage h1 b{
+}
+
+.ForthPage h1 b {
     display: flex;
     justify-content: center;
     margin-top: 10vh;
 }
-.forthPageBothDiv{
+
+.forthPageBothDiv {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-   justify-content: space-evenly;
-   margin-top: 5vh;
+    justify-content: space-evenly;
+    margin-top: 5vh;
 }
-.ForthPage div .card1{
+
+.ForthPage div .card1 {
     background-image: url(jacket1.webp);
     height: 80vh;
     width: 40vw;
     border-radius: 1rem;
     background-position: center;
-     display: flex;
-        flex-wrap: wrap;
-        align-content: flex-end;
-        color: white;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-end;
+    color: white;
 }
-.ForthPage div .card2{
-     background-image: url(jacket2.webp);
-      height: 80vh;
-        width: 40vw;
-        border-radius: 1rem;
-        display: flex;
-        flex-wrap: wrap;
-        align-content: flex-end;
-        color: white;
+
+.ForthPage div .card2 {
+    background-image: url(jacket2.webp);
+    height: 80vh;
+    width: 40vw;
+    border-radius: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-end;
+    color: white;
 }
-.forthPageShopNowbtn{
+
+.forthPageShopNowbtn {
     color: black;
     background-color: white;
     margin: 3vw;
     width: 11vw;
     border-radius: .5rem;
 }
-.fifthPage{
+
+.fifthPage {
     height: 70vh;
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     justify-content: space-between;
 }
-.policyDiv{
+
+.policyDiv {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -305,47 +342,52 @@ video{
     margin-top: 1vh;
     height: 30vh;
 }
-.truck{
+
+.truck {
     display: flex;
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
-   
+
     height: 25vh;
     width: 20vw;
 }
 
-.returnDiv{
+.returnDiv {
     display: flex;
     flex-direction: column;
     align-items: center;
-     width: 20vw;
+    width: 20vw;
     flex-wrap: wrap;
-   
+
 }
-.CustomerSupport{
+
+.CustomerSupport {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-     width: 20vw;
+    width: 20vw;
     align-items: center;
-  
+
 }
-.SecurePayments{
+
+.SecurePayments {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
-    
-     width: 20vw;
+
+    width: 20vw;
 }
-.footer{
+
+.footer {
     height: 100vh;
     background-color: rgb(196, 185, 157);
     color: white;
     display: flex;
 }
-.fooerUpperdiv{
+
+.fooerUpperdiv {
     padding-top: 5vh;
     display: flex;
     flex-direction: row;
@@ -353,80 +395,94 @@ video{
     margin-left: 10vw;
 
 }
-.footerLogo{
+
+.footerLogo {
     width: 20vw;
-}
-.footerPolicies{
-    width: 20vw;
-}
-.footerSupport{
-    width: 20vw;
-}
-.ContactInformation{
-    width: 20vw;
-}
-.aboutPage{
-    height: 100vh;
-  display: flex;
-  flex-direction: column;
- 
 }
 
-.firstAboutVideoDiv{
+.footerPolicies {
+    width: 20vw;
+}
+
+.footerSupport {
+    width: 20vw;
+}
+
+.ContactInformation {
+    width: 20vw;
+}
+
+.aboutPage {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.firstAboutVideoDiv {
     display: flex;
     flex-direction: row;
     height: 60vh;
     width: 100vw;
 }
-.firstVideo{
+
+.firstVideo {
     height: 60vh;
     width: 50vw;
     overflow: hidden;
-    
+
 }
-.AboutPage1stDivheading{
+
+.AboutPage1stDivheading {
     width: 50vw;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.AboutPage2ndPart{
+
+.AboutPage2ndPart {
     display: flex;
     flex-direction: row;
     height: 40vh;
     width: 100vw;
 }
-.AboutPage2ndPart1{
+
+.AboutPage2ndPart1 {
     display: flex;
     flex-direction: column;
     width: 50vw;
     justify-content: space-between;
 }
-.AboutPage2ndPart1Heading{
+
+.AboutPage2ndPart1Heading {
     display: flex;
     width: 50vw;
     justify-content: center;
     align-items: center;
     font-size: x-large;
 }
-.AboutPage2ndPart2{
+
+.AboutPage2ndPart2 {
     background-image: url(brand.jfif);
-    width:50vw;
+    width: 50vw;
     background-repeat: inherit;
 }
-.firstAboutVideoDiv2ndPart{
+
+.firstAboutVideoDiv2ndPart {
     display: flex;
     flex-direction: column;
     width: 50vw;
     justify-content: space-evenly;
 }
-.AllProductsUpperdiv{
+
+.AllProductsUpperdiv {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     width: 100vw;
 }
-.AllCard{
+
+.AllCard {
     background-color: rgb(196, 185, 157);
     display: flex;
     justify-content: center;
@@ -435,12 +491,13 @@ video{
     width: 20vw;
     color: white;
 }
-.AllProductsUpperdivCard{
+
+.AllProductsUpperdivCard {
     display: flex;
     flex-wrap: wrap;
     height: 35vh;
     width: 15vw;
-   margin-bottom: 10vh;
+    margin-bottom: 10vh;
 }
 
 
@@ -448,49 +505,58 @@ video{
 
 
 
-.Allproductcard1{
+.Allproductcard1 {
     background-image: url(shirts.jfif);
     height: 35vh;
     width: 15vw;
 }
-.Allproductcard2{
+
+.Allproductcard2 {
     background-image: url(bottoms.jfif);
     height: 35vh;
     width: 15vw;
 }
-.Allproductcard3{
-     background-image: url(shoes.jpg);
+
+.Allproductcard3 {
+    background-image: url(shoes.jpg);
     height: 35vh;
     width: 15vw;
-    background-position: center; 
+    background-position: center;
 }
-.Allproductcard4{
-     background-image: url(watches.jfif);
+
+.Allproductcard4 {
+    background-image: url(watches.jfif);
     height: 35vh;
     width: 15vw;
 }
-.Allproductallcard{
-     overflow: hidden;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+
+.Allproductallcard {
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
-.allcard:hover{
- transform: scale(1.08); /* zoom slightly */
+
+.allcard:hover {
+    transform: scale(1.08);
+    /* zoom slightly */
 }
-.loginDiv{
+
+.loginDiv {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-content: center;
     height: 100vh;
     width: 100vw;
-   background-color: gray;
+    background-color: gray;
     flex-wrap: wrap;
 
 }
-.loginInput{
+
+.loginInput {
     width: 30vw;
 }
-.loginCenterDiv{
+
+.loginCenterDiv {
     display: flex;
     flex-direction: column;
     height: 50vh;
@@ -499,17 +565,19 @@ video{
     border-radius: 1rem;
     padding: 2%;
 }
-.SignupDiv{
+
+.SignupDiv {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-content: center;
     height: 100vh;
     width: 100vw;
-   background-color: gray;
+    background-color: gray;
     flex-wrap: wrap;
 }
-.SignupCenterDiv{
+
+.SignupCenterDiv {
     display: flex;
     flex-direction: column;
     height: 50vh;
@@ -518,103 +586,129 @@ video{
     border-radius: 1rem;
     padding: 2%;
 }
-.haveAnAccountSpan{
+
+.haveAnAccountSpan {
     text-decoration-line: underline;
 }
-.haveAnAccountSpan:hover{
+
+.haveAnAccountSpan:hover {
     text-decoration-line: underline;
     color: blue;
 }
-.adminPanelDiv{
+
+.adminPanelDiv {
     height: 100vh;
     width: 100vw;
-     background-color: rgb(196, 185, 157);
-     display: flex;
-     flex-direction: column;
-    
-     justify-content: space-evenly;
-     
+    background-color: rgb(196, 185, 157);
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-evenly;
+
 }
-.adminPanelDiv h1{
+
+.adminPanelDiv h1 {
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.newAdminDiv{
-height: 20vh;
-width: 30vh;
-display: flex;
-flex-direction: column;
-justify-content: space-evenly;
-align-items: center;
-border: 2px solid black;
-border-radius: 1rem;
+
+.newAdminDiv {
+    height: 20vh;
+    width: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 1rem;
 }
-.AdminAllfuncDiv{
+
+.AdminAllfuncDiv {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
 }
-.updateAdminDiv{
-height: 20vh;
-width: 30vh;
-display: flex;
-flex-direction: column;
-justify-content: space-evenly;
-align-items: center;
-border: 2px solid black;
-border-radius: 1rem;
+
+.updateAdminDiv {
+    height: 20vh;
+    width: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 1rem;
 }
-.newProductPage{
+
+.newProductPage {
     height: 100vh;
     width: 100vw;
-    background-color:  rgb(196, 185, 157);
+    background-color: rgb(196, 185, 157);
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.newProductPageDiv{
+
+.newProductPageDiv {
     height: 70vh;
     width: 60vw;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
 }
-.newProductCategorybtn{
+
+.newProductCategorybtn {
     background-color: white;
 }
-.AllproductslowerDiv{
+
+.AllproductslowerDiv {
     height: 200vh;
-    
+
 }
-.AllproductslowerDivInnerDiv{
+
+.AllproductslowerDivInnerDiv {
     height: 30vh;
     width: 20vw;
 }
-.AllproductslowerDiv{
+
+.AllproductslowerDiv {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     margin-bottom: 13vh;
     gap: 10vh;
-    
+
 }
-.AllproductslowerDivTops{
+
+.AllproductslowerDivTops {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     height: 30vh;
     /* width: 20vw; */
 }
-.AllproductslowerDivBottoms{
+
+.AllproductslowerDivBottoms {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     height: 30vh;
     /* width: 20vw; */
 }
-.deleteProductPage{
+
+.deleteProductPage {
     height: 100vh;
-    background-color:  rgb(196, 185, 157);
+    background-color: rgb(196, 185, 157);
+    display: flex;
+    justify-content: center;
+}
+
+.delProductPageCategorySelectDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    align-items: center;
 }
