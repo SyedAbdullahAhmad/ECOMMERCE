@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./index.css"
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -9,10 +9,26 @@ import axios from "axios"
 import Tops from './Tops';
 const DeleteProductPage = ({tops,bottoms,shoes,accessories}) => {
   const [category, setCategory] = useState("Select Category")
+  const [deleteTops,setDelTops]=useState([])
+  const [deletebottoms,setDelBottoms]=useState([])
+  const [deleteShoes,setDelShoes]=useState([])
+  const [delAccessories,setDelAccessories]=useState([])
 
   const handleCategory = (selected: string) => {
     setCategory(selected)
   }
+  useEffect(()=>{
+    const fetchProducts=async()=>{
+      try {
+        const res=await axios.get("http://localhost:5000/DeleteProducts")
+        console.log(res.data)
+        setDelTops(res.data.products.filter((item) => item.productCategory == "Tops"))
+        setDelBottoms(res.data.products.filter((item) => item.productCategory == "Bottoms"))
+      } catch (error) {
+        console.error("Error in fetching products", error)
+      }
+    }
+  })
   return (
     <>
       <div className='deleteProductPage'>
@@ -32,16 +48,16 @@ const DeleteProductPage = ({tops,bottoms,shoes,accessories}) => {
           </Dropdown>
         </div>
       </div>
-      {/* <div className='belowSelectioninDelPage'>
+      <div className='belowSelectioninDelPage'>
          {
           category==="Tops" && tops.map((item,index)=>(
             <div key={item._id||index}>
               <h1>{item.productName}</h1>
-              <img src=''/>
+              {/* <img src=''/> */}
             </div>
           ))
          }
-      </div> */}
+      </div>
     </>
   )
 }

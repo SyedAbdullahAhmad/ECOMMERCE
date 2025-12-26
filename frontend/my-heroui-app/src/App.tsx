@@ -51,7 +51,7 @@ const App = () => {
         <Route path='/loginPage' element={<LoginPage credentials={credentials} setcredentials={setcredentials} />} />
         <Route path='/HomePage' element={<HomePage />} />
         <Route path='/AboutUs' element={<AboutUs />} />
-        <Route path='/Allproducts' element={<AllProducts />} />
+        <Route path='/Allproducts' element={<AllProducts tops={tops} setTops={setTops} bottoms={bottoms} setBottoms={setBottoms} shoes={shoes} setShoes={setShoes} accessories={accessories} setAccessories={setAccessories}/>} />
         <Route path='/signupPage' element={<SignupPage credentials={credentials} setcredentials={setcredentials} />} />
         <Route path='adminLogin' element={<AdminLogin credentials={credentials} setcredentials={setcredentials} />} />
         <Route path='/adminPanel' element={<AdminPanel />} />
