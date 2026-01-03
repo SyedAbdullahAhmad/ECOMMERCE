@@ -22,13 +22,14 @@ const DeleteProductPage = ({tops,bottoms,shoes,accessories}) => {
       try {
         const res=await axios.get("http://localhost:5000/DeleteProducts")
         console.log(res.data)
-        setDelTops(res.data.products.filter((item) => item.productCategory == "Tops"))
-        setDelBottoms(res.data.products.filter((item) => item.productCategory == "Bottoms"))
+        setDelTops(res.data.products.filter((item) => item.productCategory === "Tops"))
+        setDelBottoms(res.data.products.filter((item) => item.productCategory === "Bottoms"))
       } catch (error) {
         console.error("Error in fetching products", error)
       }
     }
-  })
+    fetchProducts()
+  },[])
   return (
     <>
       <div className='deleteProductPage'>
@@ -50,7 +51,7 @@ const DeleteProductPage = ({tops,bottoms,shoes,accessories}) => {
       </div>
       <div className='belowSelectioninDelPage'>
          {
-          category==="Tops" && tops.map((item,index)=>(
+          category==="Tops" && deleteTops.map((item,index)=>(
             <div key={item._id||index}>
               <h1>{item.productName}</h1>
               {/* <img src=''/> */}
