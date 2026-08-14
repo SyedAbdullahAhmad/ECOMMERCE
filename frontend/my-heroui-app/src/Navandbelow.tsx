@@ -13,7 +13,7 @@ const Navandbelow = () => {
             <nav className='navbar'>
              <div className='logo'>Nothing</div>
       
-             <div className='navContent'>
+             <div className='navContent cursor-pointer' >
               <li onClick={()=>navigate("/HomePage")}>Home</li>
               <li onClick={()=>navigate("/AboutUs")}>About Us</li>
               <li>Contact Us</li>

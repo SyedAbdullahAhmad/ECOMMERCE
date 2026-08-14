@@ -12,6 +12,7 @@ import AdminLogin from './AdminLogin'
 import AdminPanel from './AdminPanel'
 import NewProductPage from './NewProductPage'
 import DeleteProductPage from './DeleteProductPage'
+import AdminProdcuts from './AdminProducts'
 const App = () => {
 
     const [tops, setTops] = useState([])
@@ -41,7 +42,7 @@ const App = () => {
     password: ""
   })
   const location = useLocation();
-  const hideLocation = location.pathname === "/loginPage" || location.pathname === "/signupPage" || location.pathname === "/LoginPage" || location.pathname === "/adminLogin" || location.pathname === "/adminPanel" || location.pathname === "/newProductPage" || location.pathname === "/deleteProductPage";
+  const hideLocation = location.pathname === "/loginPage" || location.pathname === "/signupPage" || location.pathname === "/LoginPage" || location.pathname === "/adminLogin" || location.pathname === "/adminPanel" || location.pathname === "/newProductPage" || location.pathname === "/deleteProductPage" ||location.pathname==="/adminPanel" ||location.pathname==="/adminProducts";
 
   return (
     <div>
@@ -57,6 +58,7 @@ const App = () => {
         <Route path='/adminPanel' element={<AdminPanel />} />
         <Route path='/newProductPage' element={<NewProductPage />} />
         <Route path="deleteProductPage" element={<DeleteProductPage tops={tops} setTops={setTops} bottoms={bottoms} setBottoms={setBottoms} shoes={shoes} setShoes={setShoes} accessories={accessories} setAccessories={setAccessories} />} />
+        <Route path="adminProducts" element={<AdminProdcuts />} />
       </Routes>
       {!hideLocation && <Footer />}
 
