@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import AdminLayout from "./AdminLayout";
 import {
   Button,
@@ -30,43 +30,14 @@ import {
 const AdminProdcuts = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const [products, setProducts] = useState([
-    {
-      id: 1,
-      name: "Classic Black T-Shirt",
-      category: "T-Shirts",
-      price: 29.99,
-      stock: 45,
-      image:
-        "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400",
-      description: "Classic black cotton t-shirt.",
-    },
-    {
-      id: 2,
-      name: "Premium White Shirt",
-      category: "Shirts",
-      price: 49.99,
-      stock: 23,
-      image:
-        "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=400",
-      description: "Premium white formal shirt.",
-    },
-    {
-      id: 3,
-      name: "Casual Denim Jacket",
-      category: "Jackets",
-      price: 79.99,
-      stock: 12,
-      image:
-        "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400",
-      description: "Modern casual denim jacket.",
-    },
-  ]);
-
+  const [products, setProducts] = useState([]);
+  const modalContentRef = useRef(null);
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All Products");
 
   const [editingProduct, setEditingProduct] = useState(null);
+  const [imageFile, setImageFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState("");
 
   const [formData, setFormData] = useState({
     name: "",
@@ -106,6 +77,9 @@ const AdminProdcuts = () => {
       description: "",
     });
 
+    setImageFile(null);
+    setImagePreview("");
+
     onOpen();
   };
 
@@ -122,6 +96,9 @@ const AdminProdcuts = () => {
       description: product.description,
     });
 
+    setImageFile(null);
+    setImagePreview(product.image);
+
     onOpen();
   };
 
@@ -134,7 +111,7 @@ const AdminProdcuts = () => {
   };
 
   // Create / Update Product
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (
       !formData.name ||
       !formData.category ||
@@ -145,33 +122,57 @@ const AdminProdcuts = () => {
       return;
     }
 
-    if (editingProduct) {
-      // UPDATE
-      setProducts((previous) =>
-        previous.map((product) =>
-          product.id === editingProduct.id
-            ? {
-              ...product,
-              ...formData,
-              price: Number(formData.price),
-              stock: Number(formData.stock),
-            }
-            : product
-        )
-      );
-    } else {
-      // CREATE
-      const newProduct = {
-        id: Date.now(),
-        ...formData,
-        price: Number(formData.price),
-        stock: Number(formData.stock),
-      };
-
-      setProducts((previous) => [newProduct, ...previous]);
+    if (!editingProduct && !imageFile) {
+      alert("Please select a product image.");
+      return;
     }
 
-    onOpenChange();
+    try {
+      const data = new FormData();
+
+      data.append("productName", formData.name);
+      data.append("productCategory", formData.category);
+      data.append("productPrice", formData.price);
+      data.append("productQuantity", formData.stock);
+      data.append(
+        "productDescription",
+        formData.description
+      );
+
+      if (imageFile) {
+        data.append("image", imageFile);
+      }
+
+      const response = await fetch(
+        "http://localhost:5000/api/products/newProductPage",
+        {
+          method: "POST",
+          body: data,
+        }
+      );
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          result.message || "Failed to create product"
+        );
+      }
+
+      alert("Product created successfully!");
+
+      console.log(result);
+
+      onOpenChange();
+
+      setImageFile(null);
+      setImagePreview("");
+
+    } catch (error) {
+      console.error("Error creating product:", error);
+
+      alert(error.message);
+    }
   };
 
   // DELETE
@@ -204,443 +205,468 @@ const AdminProdcuts = () => {
 
   return (
     <AdminLayout>
-    <div className="p-6">
-       
-      {/* Page Header */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+      <div className="p-6">
 
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">
-            Products
-          </h1>
+        {/* Page Header */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
 
-          <p className="text-gray-500 mt-1">
-            Manage your store products
-          </p>
-        </div>
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">
+              Products
+            </h1>
 
-        <Button
-          color="primary"
-          startContent={<Plus size={18} />}
-          onPress={handleAddProduct}
-        >
-          Add Product
-        </Button>
-
-      </div>
-
-      {/* Statistics */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-
-        <Card>
-          <CardBody>
-            <div className="flex items-center gap-4">
-
-              <div className="p-3 rounded-xl bg-blue-100 text-blue-600">
-                <Package size={22} />
-              </div>
-
-              <div>
-                <p className="text-sm text-gray-500">
-                  Total Products
-                </p>
-
-                <p className="text-2xl font-bold">
-                  {products.length}
-                </p>
-              </div>
-
-            </div>
-          </CardBody>
-        </Card>
-
-        <Card>
-          <CardBody>
-            <div className="flex items-center gap-4">
-
-              <div className="p-3 rounded-xl bg-green-100 text-green-600">
-                <Package size={22} />
-              </div>
-
-              <div>
-                <p className="text-sm text-gray-500">
-                  In Stock
-                </p>
-
-                <p className="text-2xl font-bold">
-                  {products.filter((product) => product.stock > 0).length}
-                </p>
-              </div>
-
-            </div>
-          </CardBody>
-        </Card>
-
-        <Card>
-          <CardBody>
-            <div className="flex items-center gap-4">
-
-              <div className="p-3 rounded-xl bg-red-100 text-red-600">
-                <Package size={22} />
-              </div>
-
-              <div>
-                <p className="text-sm text-gray-500">
-                  Out of Stock
-                </p>
-
-                <p className="text-2xl font-bold">
-                  {products.filter((product) => product.stock === 0).length}
-                </p>
-              </div>
-
-            </div>
-          </CardBody>
-        </Card>
-
-      </div>
-
-      {/* Product Categories */}
-      <div className="flex flex-wrap gap-3 mb-6">
-
-        {productSections.map((category) => (
-          <Button
-            key={category}
-            variant={
-              selectedCategory === category
-                ? "solid"
-                : "flat"
-            }
-            color={
-              selectedCategory === category
-                ? "primary"
-                : "default"
-            }
-            onPress={() => setSelectedCategory(category)}
-          >
-            {category}
-          </Button>
-        ))}
-
-      </div>
-      {/* Products Card */}
-      <Card>
-
-        <CardBody className="p-0">
-
-          {/* Search */}
-          <div className="p-5 border-b border-gray-200">
-
-            <Input
-              className="max-w-md"
-              placeholder="Search products..."
-              value={search}
-              onValueChange={setSearch}
-              startContent={
-                <Search size={18} className="text-gray-400" />
-              }
-              variant="bordered"
-            />
-
+            <p className="text-gray-500 mt-1">
+              Manage your store products
+            </p>
           </div>
 
-          {/* Table */}
-          <div className="overflow-x-auto">
+          <Button
+            color="primary"
+            startContent={<Plus size={18} />}
+            onPress={handleAddProduct}
+          >
+            Add Product
+          </Button>
 
-            <table className="w-full text-sm">
+        </div>
 
-              <thead>
-                <tr className="border-b bg-gray-50">
+        {/* Statistics */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
 
-                  <th className="text-left px-6 py-4 font-semibold">
-                    Product
-                  </th>
+          <Card>
+            <CardBody>
+              <div className="flex items-center gap-4">
 
-                  <th className="text-left px-6 py-4 font-semibold">
-                    Category
-                  </th>
+                <div className="p-3 rounded-xl bg-blue-100 text-blue-600">
+                  <Package size={22} />
+                </div>
 
-                  <th className="text-left px-6 py-4 font-semibold">
-                    Price
-                  </th>
+                <div>
+                  <p className="text-sm text-gray-500">
+                    Total Products
+                  </p>
 
-                  <th className="text-left px-6 py-4 font-semibold">
-                    Stock
-                  </th>
+                  <p className="text-2xl font-bold">
+                    {products.length}
+                  </p>
+                </div>
 
-                  <th className="text-left px-6 py-4 font-semibold">
-                    Status
-                  </th>
+              </div>
+            </CardBody>
+          </Card>
 
-                  <th className="text-right px-6 py-4 font-semibold">
-                    Actions
-                  </th>
+          <Card>
+            <CardBody>
+              <div className="flex items-center gap-4">
 
-                </tr>
-              </thead>
+                <div className="p-3 rounded-xl bg-green-100 text-green-600">
+                  <Package size={22} />
+                </div>
 
-              <tbody>
+                <div>
+                  <p className="text-sm text-gray-500">
+                    In Stock
+                  </p>
 
-                {filteredProducts.map((product) => (
+                  <p className="text-2xl font-bold">
+                    {products.filter((product) => product.stock > 0).length}
+                  </p>
+                </div>
 
-                  <tr
-                    key={product.id}
-                    className="border-b last:border-b-0 hover:bg-gray-50"
-                  >
+              </div>
+            </CardBody>
+          </Card>
 
-                    {/* Product */}
-                    <td className="px-6 py-4">
+          <Card>
+            <CardBody>
+              <div className="flex items-center gap-4">
 
-                      <div className="flex items-center gap-4">
+                <div className="p-3 rounded-xl bg-red-100 text-red-600">
+                  <Package size={22} />
+                </div>
 
-                        <Image
-                          src={product.image}
-                          alt={product.name}
-                          className="w-14 h-14 object-cover rounded-lg"
-                        />
+                <div>
+                  <p className="text-sm text-gray-500">
+                    Out of Stock
+                  </p>
 
-                        <div>
-                          <p className="font-semibold">
-                            {product.name}
-                          </p>
+                  <p className="text-2xl font-bold">
+                    {products.filter((product) => product.stock === 0).length}
+                  </p>
+                </div>
 
-                          <p className="text-xs text-gray-500 mt-1">
-                            ID: {product.id}
-                          </p>
-                        </div>
+              </div>
+            </CardBody>
+          </Card>
 
-                      </div>
+        </div>
 
-                    </td>
+        {/* Product Categories */}
+        <div className="flex flex-wrap gap-3 mb-6">
 
-                    {/* Category */}
-                    <td className="px-6 py-4">
-                      {product.category}
-                    </td>
+          {productSections.map((category) => (
+            <Button
+              key={category}
+              variant={
+                selectedCategory === category
+                  ? "solid"
+                  : "flat"
+              }
+              color={
+                selectedCategory === category
+                  ? "primary"
+                  : "default"
+              }
+              onPress={() => setSelectedCategory(category)}
+            >
+              {category}
+            </Button>
+          ))}
 
-                    {/* Price */}
-                    <td className="px-6 py-4 font-medium">
-                      ${Number(product.price).toFixed(2)}
-                    </td>
+        </div>
+        {/* Products Card */}
+        <Card>
 
-                    {/* Stock */}
-                    <td className="px-6 py-4">
-                      {product.stock}
-                    </td>
+          <CardBody className="p-0">
 
-                    {/* Status */}
-                    <td className="px-6 py-4">
+            {/* Search */}
+            <div className="p-5 border-b border-gray-200">
 
-                      {product.stock > 0 ? (
-                        <Chip color="success" size="sm" variant="flat">
-                          In Stock
-                        </Chip>
-                      ) : (
-                        <Chip color="danger" size="sm" variant="flat">
-                          Out of Stock
-                        </Chip>
-                      )}
+              <Input
+                className="max-w-md"
+                placeholder="Search products..."
+                value={search}
+                onValueChange={setSearch}
+                startContent={
+                  <Search size={18} className="text-gray-400" />
+                }
+                variant="bordered"
+              />
 
-                    </td>
+            </div>
 
-                    {/* Actions */}
-                    <td className="px-6 py-4">
+            {/* Table */}
+            <div className="overflow-x-auto">
 
-                      <div className="flex justify-end gap-2">
+              <table className="w-full text-sm">
 
-                        <Button
-                          isIconOnly
-                          size="sm"
-                          variant="light"
-                          aria-label="View product"
-                        >
-                          <Eye size={17} />
-                        </Button>
+                <thead>
+                  <tr className="border-b bg-gray-50">
 
-                        <Button
-                          isIconOnly
-                          size="sm"
-                          variant="light"
-                          color="primary"
-                          aria-label="Edit product"
-                          onPress={() => handleEditProduct(product)}
-                        >
-                          <Pencil size={17} />
-                        </Button>
+                    <th className="text-left px-6 py-4 font-semibold">
+                      Product
+                    </th>
 
-                        <Button
-                          isIconOnly
-                          size="sm"
-                          variant="light"
-                          color="danger"
-                          aria-label="Delete product"
-                          onPress={() => handleDelete(product.id)}
-                        >
-                          <Trash2 size={17} />
-                        </Button>
+                    <th className="text-left px-6 py-4 font-semibold">
+                      Category
+                    </th>
 
-                      </div>
+                    <th className="text-left px-6 py-4 font-semibold">
+                      Price
+                    </th>
 
-                    </td>
+                    <th className="text-left px-6 py-4 font-semibold">
+                      Stock
+                    </th>
+
+                    <th className="text-left px-6 py-4 font-semibold">
+                      Status
+                    </th>
+
+                    <th className="text-right px-6 py-4 font-semibold">
+                      Actions
+                    </th>
 
                   </tr>
+                </thead>
 
-                ))}
+                <tbody>
 
-              </tbody>
+                  {filteredProducts.map((product) => (
 
-            </table>
+                    <tr
+                      key={product.id}
+                      className="border-b last:border-b-0 hover:bg-gray-50"
+                    >
 
-            {filteredProducts.length === 0 && (
-              <div className="py-16 text-center">
+                      {/* Product */}
+                      <td className="px-6 py-4">
 
-                <Package
-                  size={40}
-                  className="mx-auto text-gray-300"
-                />
+                        <div className="flex items-center gap-4">
 
-                <p className="mt-3 text-gray-500">
-                  No products found
-                </p>
+                          <Image
+                            src={product.image}
+                            alt={product.name}
+                            className="w-14 h-14 object-cover rounded-lg"
+                          />
 
+                          <div>
+                            <p className="font-semibold">
+                              {product.name}
+                            </p>
+
+                            <p className="text-xs text-gray-500 mt-1">
+                              ID: {product.id}
+                            </p>
+                          </div>
+
+                        </div>
+
+                      </td>
+
+                      {/* Category */}
+                      <td className="px-6 py-4">
+                        {product.category}
+                      </td>
+
+                      {/* Price */}
+                      <td className="px-6 py-4 font-medium">
+                        ${Number(product.price).toFixed(2)}
+                      </td>
+
+                      {/* Stock */}
+                      <td className="px-6 py-4">
+                        {product.stock}
+                      </td>
+
+                      {/* Status */}
+                      <td className="px-6 py-4">
+
+                        {product.stock > 0 ? (
+                          <Chip color="success" size="sm" variant="flat">
+                            In Stock
+                          </Chip>
+                        ) : (
+                          <Chip color="danger" size="sm" variant="flat">
+                            Out of Stock
+                          </Chip>
+                        )}
+
+                      </td>
+
+                      {/* Actions */}
+                      <td className="px-6 py-4">
+
+                        <div className="flex justify-end gap-2">
+
+                          <Button
+                            isIconOnly
+                            size="sm"
+                            variant="light"
+                            aria-label="View product"
+                          >
+                            <Eye size={17} />
+                          </Button>
+
+                          <Button
+                            isIconOnly
+                            size="sm"
+                            variant="light"
+                            color="primary"
+                            aria-label="Edit product"
+                            onPress={() => handleEditProduct(product)}
+                          >
+                            <Pencil size={17} />
+                          </Button>
+
+                          <Button
+                            isIconOnly
+                            size="sm"
+                            variant="light"
+                            color="danger"
+                            aria-label="Delete product"
+                            onPress={() => handleDelete(product.id)}
+                          >
+                            <Trash2 size={17} />
+                          </Button>
+
+                        </div>
+
+                      </td>
+
+                    </tr>
+
+                  ))}
+
+                </tbody>
+
+              </table>
+
+              {filteredProducts.length === 0 && (
+                <div className="py-16 text-center">
+
+                  <Package
+                    size={40}
+                    className="mx-auto text-gray-300"
+                  />
+
+                  <p className="mt-3 text-gray-500">
+                    No products found
+                  </p>
+
+                </div>
+              )}
+
+            </div>
+
+          </CardBody>
+
+        </Card>
+
+        {/* Add / Edit Modal */}
+        <Modal
+          isOpen={isOpen}
+          onOpenChange={onOpenChange}
+          size="2xl"
+          scrollBehavior="inside"
+        >
+
+          <ModalContent>
+
+            {(onClose) => (
+              <div ref={modalContentRef}>
+                <ModalHeader>
+                  {editingProduct
+                    ? "Edit Product"
+                    : "Add New Product"}
+                </ModalHeader>
+
+                <ModalBody>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                    <Input
+                      label="Product Name"
+                      placeholder="Enter product name"
+                      isRequired
+                      value={formData.name}
+                      onValueChange={(value) =>
+                        handleChange("name", value)
+                      }
+                    />
+
+                    <Select
+                      label="Category"
+                      placeholder="Select category"
+                      selectedKeys={
+                        formData.category ? new Set([formData.category]) : new Set()
+                      }
+                      onSelectionChange={(keys) => {
+                        const selectedValue = Array.from(keys)[0];
+                        handleChange("category", selectedValue);
+                      }}
+                      isRequired
+                      popoverProps={{
+                        portalContainer: modalContentRef.current,
+                      }}
+                    >
+                      {categories.map((category) => (
+                        <SelectItem key={category}>{category}</SelectItem>
+                      ))}
+                    </Select>
+
+                    <Input
+                      label="Price"
+                      placeholder="0.00"
+                      type="number"
+                      startContent="$"
+                      isRequired
+                      value={String(formData.price)}
+                      onValueChange={(value) =>
+                        handleChange("price", value)
+                      }
+                    />
+
+                    <Input
+                      label="Stock"
+                      placeholder="0"
+                      type="number"
+                      isRequired
+                      value={String(formData.stock)}
+                      onValueChange={(value) =>
+                        handleChange("stock", value)
+                      }
+                    />
+
+                    <div className="md:col-span-2">
+
+                      <label className="block text-sm font-medium mb-2">
+                        Product Image
+                      </label>
+
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(event) => {
+                          const file = event.target.files?.[0];
+
+                          if (!file) return;
+
+                          setImageFile(file);
+
+                          const previewUrl = URL.createObjectURL(file);
+                          setImagePreview(previewUrl);
+                        }}
+                        className="block w-full text-sm border border-gray-300 rounded-lg p-2"
+                      />
+
+                      {imagePreview && (
+                        <div className="mt-4">
+                          <p className="text-sm text-gray-500 mb-2">
+                            Image Preview
+                          </p>
+
+                          <Image
+                            src={imagePreview}
+                            alt="Product preview"
+                            className="w-32 h-32 object-cover rounded-lg"
+                          />
+                        </div>
+                      )}
+
+                    </div>
+
+                    <Textarea
+                      label="Description"
+                      placeholder="Enter product description"
+                      className="md:col-span-2"
+                      value={formData.description}
+                      onValueChange={(value) =>
+                        handleChange("description", value)
+                      }
+                    />
+
+                  </div>
+
+                </ModalBody>
+
+                <ModalFooter>
+
+                  <Button
+                    variant="light"
+                    onPress={onClose}
+                  >
+                    Cancel
+                  </Button>
+
+                  <Button
+                    color="primary"
+                    onPress={handleSubmit}
+                  >
+                    {editingProduct
+                      ? "Update Product"
+                      : "Create Product"}
+                  </Button>
+
+                </ModalFooter>
               </div>
             )}
 
-          </div>
+          </ModalContent>
 
-        </CardBody>
+        </Modal>
 
-      </Card>
-
-      {/* Add / Edit Modal */}
-      <Modal
-        isOpen={isOpen}
-        onOpenChange={onOpenChange}
-        size="2xl"
-        scrollBehavior="inside"
-      >
-
-        <ModalContent>
-
-          {(onClose) => (
-            <>
-              <ModalHeader>
-                {editingProduct
-                  ? "Edit Product"
-                  : "Add New Product"}
-              </ModalHeader>
-
-              <ModalBody>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-                  <Input
-                    label="Product Name"
-                    placeholder="Enter product name"
-                    isRequired
-                    value={formData.name}
-                    onValueChange={(value) =>
-                      handleChange("name", value)
-                    }
-                  />
-
-                  <Select
-                    label="Category"
-                    placeholder="Select category"
-                    selectedKeys={
-                      formData.category
-                        ? [formData.category]
-                        : []
-                    }
-                    onChange={(event) =>
-                      handleChange(
-                        "category",
-                        event.target.value
-                      )
-                    }
-                    isRequired
-                  >
-                    {categories.map((category) => (
-                      <SelectItem key={category}>
-                        {category}
-                      </SelectItem>
-                    ))}
-                  </Select>
-
-                  <Input
-                    label="Price"
-                    placeholder="0.00"
-                    type="number"
-                    startContent="$"
-                    isRequired
-                    value={String(formData.price)}
-                    onValueChange={(value) =>
-                      handleChange("price", value)
-                    }
-                  />
-
-                  <Input
-                    label="Stock"
-                    placeholder="0"
-                    type="number"
-                    isRequired
-                    value={String(formData.stock)}
-                    onValueChange={(value) =>
-                      handleChange("stock", value)
-                    }
-                  />
-
-                  <Input
-                    label="Image URL"
-                    placeholder="https://..."
-                    className="md:col-span-2"
-                    value={formData.image}
-                    onValueChange={(value) =>
-                      handleChange("image", value)
-                    }
-                  />
-
-                  <Textarea
-                    label="Description"
-                    placeholder="Enter product description"
-                    className="md:col-span-2"
-                    value={formData.description}
-                    onValueChange={(value) =>
-                      handleChange("description", value)
-                    }
-                  />
-
-                </div>
-
-              </ModalBody>
-
-              <ModalFooter>
-
-                <Button
-                  variant="light"
-                  onPress={onClose}
-                >
-                  Cancel
-                </Button>
-
-                <Button
-                  color="primary"
-                  onPress={handleSubmit}
-                >
-                  {editingProduct
-                    ? "Update Product"
-                    : "Create Product"}
-                </Button>
-
-              </ModalFooter>
-            </>
-          )}
-
-        </ModalContent>
-
-      </Modal>
-
-    </div>
+      </div>
     </AdminLayout>
   );
 };

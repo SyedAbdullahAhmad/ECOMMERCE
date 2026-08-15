@@ -1,11 +1,17 @@
+import "dotenv/config";
+
 import express from 'express'
 import router from "./routers/credentialRouter.js"
 import productRouter from "./routers/productRoutes.js"
 import { connectDB } from './Config/db.js';
-import  cors from "cors"
+import cors from "cors"
 import path from "path";
-import {fileURLToPath} from "url";
-const app=express();
+import { fileURLToPath } from "url";
+
+
+
+const app = express();
+
 
 
 const __filename=fileURLToPath(import.meta.url)
@@ -19,7 +25,7 @@ app.use(cors({
     origin:"http://localhost:5173"
 }))
 app.use("/",router)
-app.use("/",productRouter)
+app.use("/api/products",productRouter)
 
 const PORT=5000
 
